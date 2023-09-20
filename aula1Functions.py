@@ -1,4 +1,3 @@
-
 import requests
 import json
 import datetime
@@ -6,16 +5,15 @@ from typing import Union
 
 
 ###### definicion de funciones #######
-# funcion para obtener las aulas del backend 
 def obtenerHorarios(idSchedule):
-    peticion  = f'https://localhost:7130/api/classroom/byCalendar/{idSchedule}'
+    peticion  = f'http://localhost:7130/api/classroom/byCalendar/{idSchedule}' 
     response = requests.get(peticion, verify=False)
     listaJson =  response.json()
     cadenaJson = json.dumps(listaJson)
     listaPython = json.loads(cadenaJson)
     return listaPython
     
-#funcionalidad y desarrollo del proceso para 1 sesión 
+#funcionalidad y desarrollo
 def process(listaPython,isLab,nameLab,startTimeTest, endTimeTest, dayTest, piso, capacity, buildCode):
     #cast de hora de variables ingresadas por el usuario
     startTimeCastTest=datetime.datetime.strptime(startTimeTest, "%H:%M").time()
@@ -130,7 +128,7 @@ def subproblema5(lista,piso, answer1, answer2,capacity, buildCode):
     else:
         return lista
     
-#quitar grupos y unicamente obtener la ifnromación del aula 
+#quitar grupos
 
 def aulas (listaAulas):
     aulasResp=[]
